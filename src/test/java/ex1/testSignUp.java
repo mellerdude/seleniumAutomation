@@ -10,6 +10,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import files.fileReader;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -32,6 +35,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
 import java.util.*;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -41,17 +45,19 @@ public class testSignUp {
 	JavascriptExecutor js;
 
 	@BeforeMethod
-	public void setUp() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\user\\Downloads\\chromedriver.exe");
+	public void setUp() throws IOException {
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\user\\Desktop\\chromedriver.exe");
 		driver = new ChromeDriver();
 		js = (JavascriptExecutor) driver;
 		vars = new HashMap<String, Object>();
+		fileReader objExcelFile = new fileReader();
+		objExcelFile.fileRead("C:\\Users\\user\\workspace3\\seleniumAutomation\\src\\test\\java\\files", "input.xls", "signUp");
+	
 	}
 
 	@AfterMethod
 	public void tearDown() {
-		 driver.quit();
+		 //driver.quit();
 	}
 
 	@Test
@@ -61,12 +67,29 @@ public class testSignUp {
 
 		driver.findElement(By.className("fa-sign-in-alt")).click();
 		driver.findElement(By.className("cSwitchToSignUp")).click();
+		
+		Random rand = new Random();
+		String email = "";
+		String pwd ="";
+		String fName = "";
+		String lName = "";
+		
+		Sheet theSheet = fileReader.getsheet();
 
-		driver.findElement(By.name("username")).sendKeys(getSaltString() + "@gmail.com");
-		driver.findElement(By.name("LoginFirstName")).sendKeys("Omri");
-		driver.findElement(By.name("LoginLastName")).sendKeys("Meller");
+		int rowCount = fileReader.getRowcount();
+
+		Row row = theSheet.getRow(0);
+		email = (row.getCell(0).getStringCellValue());
+		fName = (row.getCell(1).getStringCellValue());
+		lName = (row.getCell(2).getStringCellValue());
+		pwd = String.valueOf(row.getCell(3).getNumericCellValue());
+		pwd = pwd.substring(0, 5);
+
+		driver.findElement(By.name("username")).sendKeys(email + String.valueOf(rand.nextInt(1000)) + "@gmail.com");
+		driver.findElement(By.name("LoginFirstName")).sendKeys(fName);
+		driver.findElement(By.name("LoginLastName")).sendKeys(lName);
 		driver.findElement(By.name("cAcceptTos")).click();
-		driver.findElement(By.id("cLoginPassword")).sendKeys("12345");
+		driver.findElement(By.id("cLoginPassword")).sendKeys(pwd);
 		driver.findElement(By.name("signUp")).click();
 
 	}

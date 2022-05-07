@@ -42,7 +42,7 @@ public class ticketorTests {
 	@BeforeMethod
 	public void setUp() {
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\user\\Downloads\\chromedriver.exe");
+				"C:\\Users\\user\\Desktop\\chromedriver.exe");
 		driver = new ChromeDriver();
 		js = (JavascriptExecutor) driver;
 		vars = new HashMap<String, Object>();
@@ -57,6 +57,7 @@ public class ticketorTests {
 	public void testOrderTicket() {
 		driver.get("https://www.ticketor.com/demo/default");
 		driver.manage().window().setSize(new Dimension(1024, 724));
+
 		driver.findElement(By.xpath("//*[@id=\"ctl00_CPMain_cGallery_Repeater1_ctl00_Div1\"]/a")).click();
 		driver.findElement(By.className("monthly-next")).click();
 		driver.findElement(By.xpath("//*[@id=\"cCalendar\"]/div[3]/div[2]/div[3]/div[2]/a/div/p[1]")).click();
@@ -95,5 +96,6 @@ public class ticketorTests {
 	      Actions builder = new Actions(driver);
 	      builder.moveToElement(element, 0, 0).perform();
 	    }
+
 	}
 }

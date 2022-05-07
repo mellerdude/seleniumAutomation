@@ -50,7 +50,7 @@ public class testLogin {
 		vars = new HashMap<String, Object>();
 		fileReader objExcelFile = new fileReader();
 
-		objExcelFile.fileRead("C:\\Users\\user\\workspace3\\ex1\\src\\test\\java\\Files", "input.xls", "login");
+		objExcelFile.fileRead("C:\\Users\\user\\workspace3\\seleniumAutomation\\src\\test\\java\\files", "input.xls", "login");
 		driver.get("https://www.ticketor.com/demo/default");
 		driver.manage().window().setSize(new Dimension(1024, 724));
 	}
@@ -69,18 +69,7 @@ public class testLogin {
 		Sheet theSheet = fileReader.getsheet();
 
 		int rowCount = fileReader.getRowcount();
-		/*
-		 * for (int i = 0; i < rowCount + 1; i++) {
-		 * 
-		 * // Create a loop to print cell values in a row
-		 * 
-		 * for (int j = 0; j < row.getLastCellNum(); j++) {
-		 * 
-		 * // Print Excel data in console
-		 * 
-		 * 
-		 * } }
-		 */
+
 		Row row = theSheet.getRow(0);
 		email = (row.getCell(0).getStringCellValue());
 		password = String.valueOf(row.getCell(1).getNumericCellValue());
