@@ -46,12 +46,12 @@ public class testSignUp {
 
 	@BeforeMethod
 	public void setUp() throws IOException {
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\user\\Desktop\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\omrim\\Downloads\\chromedriver.exe");
 		driver = new ChromeDriver();
 		js = (JavascriptExecutor) driver;
 		vars = new HashMap<String, Object>();
 		fileReader objExcelFile = new fileReader();
-		objExcelFile.fileRead("C:\\Users\\user\\workspace3\\seleniumAutomation\\src\\test\\java\\files", "input.xls", "signUp");
+		objExcelFile.fileRead("C:\\Users\\omrim\\OneDrive - Afeka College Of Engineering\\Programming\\Java\\seleniumAutomation\\src\\test\\java\\files\\", "input.xls", "payment");
 	
 	}
 

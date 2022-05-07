@@ -41,8 +41,7 @@ public class ticketorTests {
 
 	@BeforeMethod
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\user\\Desktop\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\omrim\\Downloads\\chromedriver.exe");
 		driver = new ChromeDriver();
 		js = (JavascriptExecutor) driver;
 		vars = new HashMap<String, Object>();
@@ -54,7 +53,7 @@ public class ticketorTests {
 	}
 	
 	@Test
-	public void testOrderTicket() {
+	public void testOrderTicket() throws InterruptedException {
 		driver.get("https://www.ticketor.com/demo/default");
 		driver.manage().window().setSize(new Dimension(1024, 724));
 
@@ -74,7 +73,7 @@ public class ticketorTests {
 	      Actions builder = new Actions(driver);
 	      builder.moveToElement(element, 0, 0).perform();
 	    }
-	    
+	    Thread.sleep(3000);
 	    // 10 | click | css=tr:nth-child(2) .editText | 
 	    driver.findElement(By.cssSelector("tr:nth-child(2) .editText")).click();
 	    // 11 | select | css=tr:nth-child(2) .editText | label=1

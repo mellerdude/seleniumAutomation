@@ -44,13 +44,13 @@ public class testLogin {
 
 	@BeforeMethod
 	public void setUp() throws IOException {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\omrim\\Downloads\\chromedriver.exe");
 		driver = new ChromeDriver();
 		js = (JavascriptExecutor) driver;
 		vars = new HashMap<String, Object>();
 		fileReader objExcelFile = new fileReader();
 
-		objExcelFile.fileRead("C:\\Users\\user\\workspace3\\seleniumAutomation\\src\\test\\java\\files", "input.xls", "login");
+		objExcelFile.fileRead("C:\\Users\\omrim\\OneDrive - Afeka College Of Engineering\\Programming\\Java\\seleniumAutomation\\src\\test\\java\\files\\", "input.xls", "login");
 		driver.get("https://www.ticketor.com/demo/default");
 		driver.manage().window().setSize(new Dimension(1024, 724));
 	}
