@@ -12,6 +12,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import files.fileReader;
+import pages.homePage;
+import pages.loginPage;
+import pages.signupPage;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
@@ -51,7 +54,7 @@ public class testSignUp {
 		js = (JavascriptExecutor) driver;
 		vars = new HashMap<String, Object>();
 		fileReader objExcelFile = new fileReader();
-		objExcelFile.fileRead("C:\\Users\\omrim\\OneDrive - Afeka College Of Engineering\\Programming\\Java\\seleniumAutomation\\src\\test\\java\\files\\", "input.xls", "payment");
+		objExcelFile.fileRead("C:\\Users\\omrim\\OneDrive - Afeka College Of Engineering\\Programming\\Java\\seleniumAutomation\\src\\test\\java\\files\\", "input.xls", "signUp");
 	
 	}
 
@@ -65,8 +68,11 @@ public class testSignUp {
 		driver.get("https://www.ticketor.com/demo/default");
 		driver.manage().window().setSize(new Dimension(1024, 724));
 
-		driver.findElement(By.className("fa-sign-in-alt")).click();
-		driver.findElement(By.className("cSwitchToSignUp")).click();
+		homePage home = new homePage(driver);
+		home.clickSignIn();
+		loginPage login = new loginPage(driver);
+		login.switchToSignUp();
+		signupPage signUp = new signupPage(driver);
 		
 		Random rand = new Random();
 		String email = "";
@@ -85,13 +91,12 @@ public class testSignUp {
 		pwd = String.valueOf(row.getCell(3).getNumericCellValue());
 		pwd = pwd.substring(0, 5);
 
-		driver.findElement(By.name("username")).sendKeys(email + String.valueOf(rand.nextInt(1000)) + "@gmail.com");
-		driver.findElement(By.name("LoginFirstName")).sendKeys(fName);
-		driver.findElement(By.name("LoginLastName")).sendKeys(lName);
-		driver.findElement(By.name("cAcceptTos")).click();
-		driver.findElement(By.id("cLoginPassword")).sendKeys(pwd);
-		driver.findElement(By.name("signUp")).click();
-
+		signUp.postUserMail(email + String.valueOf(rand.nextInt(10000)) + "@gmail.com");
+		signUp.postUserFName(fName);
+		signUp.postUserLName(lName);
+		signUp.acceptAgreement();
+		signUp.postUserPass(pwd);
+		signUp.clickSignUp();
 	}
 
 	protected String getSaltString() {

@@ -1,4 +1,5 @@
 package ex1;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -33,6 +34,8 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import pages.homePage;
+import pages.ticketPage;
 
 public class ticketorTests {
 	private WebDriver driver;
@@ -41,7 +44,7 @@ public class ticketorTests {
 
 	@BeforeMethod
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\omrim\\Downloads\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\omrim\\Downloads\\chromedriver.exe");
 		driver = new ChromeDriver();
 		js = (JavascriptExecutor) driver;
 		vars = new HashMap<String, Object>();
@@ -49,52 +52,20 @@ public class ticketorTests {
 
 	@AfterMethod
 	public void tearDown() {
-		 //driver.quit();
+		// driver.quit();
 	}
-	
+
 	@Test
 	public void testOrderTicket() throws InterruptedException {
 		driver.get("https://www.ticketor.com/demo/default");
 		driver.manage().window().setSize(new Dimension(1024, 724));
-
-		driver.findElement(By.xpath("//*[@id=\"ctl00_CPMain_cGallery_Repeater1_ctl00_Div1\"]/a")).click();
-		driver.findElement(By.className("monthly-next")).click();
-		driver.findElement(By.xpath("//*[@id=\"cCalendar\"]/div[3]/div[2]/div[3]/div[2]/a/div/p[1]")).click();
-		
-	    {
-	      WebElement element = driver.findElement(By.cssSelector(".monthly-week:nth-child(2) > .m-d:nth-child(3) .cCalendarEventTitle"));
-	      Actions builder = new Actions(driver);
-	      builder.moveToElement(element).perform();
-	    }
-	    // 8 | mouseOut | css=.clearfix:nth-child(2) > .cCalendarEventTitle | 
-	    
-	    {
-	      WebElement element = driver.findElement(By.tagName("body"));
-	      Actions builder = new Actions(driver);
-	      builder.moveToElement(element, 0, 0).perform();
-	    }
-	    Thread.sleep(3000);
-	    // 10 | click | css=tr:nth-child(2) .editText | 
-	    driver.findElement(By.cssSelector("tr:nth-child(2) .editText")).click();
-	    // 11 | select | css=tr:nth-child(2) .editText | label=1
-	    {
-	      WebElement dropdown = driver.findElement(By.cssSelector("tr:nth-child(2) .editText"));
-	      dropdown.findElement(By.xpath("//option[. = '1']")).click();
-	    }
-	    // 12 | click | css=.large | 
-	    driver.findElement(By.cssSelector(".large")).click();
-	    // 13 | mouseOver | css=.large | 
-	    {
-	      WebElement element = driver.findElement(By.cssSelector(".large"));
-	      Actions builder = new Actions(driver);
-	      builder.moveToElement(element).perform();
-	    }
-	    // 14 | mouseOut | css=.large | 
-	    {
-	      WebElement element = driver.findElement(By.tagName("body"));
-	      Actions builder = new Actions(driver);
-	      builder.moveToElement(element, 0, 0).perform();
-	    }
-
+		homePage home = new homePage(driver);
+		home.clickDanceEvent();
+		ticketPage ticket = new ticketPage(driver);
+		ticket.skipNextMonth();
+		ticket.pressEventTime();
+		Thread.sleep(1000);
+		ticket.clickNumTickets(1);
+		ticket.clickAddToCart();
 	}
 }

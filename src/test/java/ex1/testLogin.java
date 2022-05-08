@@ -36,6 +36,8 @@ import java.util.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import pages.homePage;
+import pages.loginPage;
 
 public class testLogin {
 	private WebDriver driver;
@@ -74,13 +76,14 @@ public class testLogin {
 		email = (row.getCell(0).getStringCellValue());
 		password = String.valueOf(row.getCell(1).getNumericCellValue());
 		password = password.substring(0, 5);
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 
-		driver.findElement(By.className("fa-sign-in-alt")).click();
-		driver.findElement(By.id("cLoginEmail")).sendKeys(email);
-		driver.findElement(By.id("cLoginPassword")).sendKeys(password);
-
-		driver.findElement(By.name("Login")).click();
+		homePage home = new homePage(driver);
+		home.clickSignIn();
+		loginPage login = new loginPage(driver);
+		login.postUserMail(email);
+		login.postUserPass(password);
+		login.clickLogin();
 
 	}
 }

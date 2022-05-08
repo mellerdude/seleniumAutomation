@@ -1,6 +1,10 @@
 package ex1;
 
 import java.io.IOException;
+import pages.homePage;
+import pages.loginPage;
+import pages.ticketPage;
+import pages.paymentPage;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -207,49 +211,28 @@ public class testPayment {
 		password = String.valueOf(row.getCell(1).getNumericCellValue());
 		password = password.substring(0, 5);
 
-		driver.findElement(By.className("fa-sign-in-alt")).click();
-		driver.findElement(By.id("cLoginEmail")).sendKeys(email);
-		driver.findElement(By.id("cLoginPassword")).sendKeys(password);
+		//login
+		homePage home = new homePage(driver);
+		home.clickSignIn();
+		loginPage login = new loginPage(driver);
+		login.postUserMail(email);
+		login.postUserPass(password);
+		login.clickLogin();
+		
+		Thread.sleep(1000);
 
-		driver.findElement(By.name("Login")).click();
-		driver.get("https://www.ticketor.com/demo/default");
-		driver.manage().window().setSize(new Dimension(1024, 724));
-
-		driver.findElement(By.xpath("//*[@id=\"ctl00_CPMain_cGallery_Repeater1_ctl00_Div1\"]/a")).click();
-		driver.findElement(By.className("monthly-next")).click();
-		driver.findElement(By.xpath("//*[@id=\"cCalendar\"]/div[3]/div[2]/div[3]/div[2]/a/div/p[1]")).click();
-
-		{
-			WebElement element = driver
-					.findElement(By.cssSelector(".monthly-week:nth-child(2) > .m-d:nth-child(3) .cCalendarEventTitle"));
-			Actions builder = new Actions(driver);
-			builder.moveToElement(element).perform();
-		}
-
-		{
-			WebElement element = driver.findElement(By.tagName("body"));
-			Actions builder = new Actions(driver);
-			builder.moveToElement(element, 0, 0).perform();
-		}
-		Thread.sleep(1500);
-		driver.findElement(By.cssSelector("tr:nth-child(2) .editText")).click();
-		{
-			WebElement dropdown = driver.findElement(By.cssSelector("tr:nth-child(2) .editText"));
-			dropdown.findElement(By.xpath("//option[. = '1']")).click();
-		}
-		driver.findElement(By.cssSelector(".large")).click();
-		{
-			WebElement element = driver.findElement(By.cssSelector(".large"));
-			Actions builder = new Actions(driver);
-			builder.moveToElement(element).perform();
-		}
-		{
-			WebElement element = driver.findElement(By.tagName("body"));
-			Actions builder = new Actions(driver);
-			builder.moveToElement(element, 0, 0).perform();
-		}
-
-		driver.findElement(By.xpath("//*[@id=\"cAddedToCartPopup\"]/div[2]/a[1]")).click();
+		//find event
+		home.clickDanceEvent();
+		ticketPage ticket = new ticketPage(driver);
+		ticket.skipNextMonth();
+		ticket.pressEventTime();
+		Thread.sleep(1000);
+		ticket.clickNumTickets(1);
+		ticket.clickAddToCart();
+		Thread.sleep(1000);
+		ticket.clickProceedToPay();
+		
+		//pay for event
 		driver.findElement(By.xpath("//*[@id=\"ctl00_CPMain_cDeliveryMethods_ctl01_DeliveryMethod1_cDeliveryMethods\"]/tbody/tr[1]/td/span/label/div/span[1]")).click();
 		driver.findElement(By.id("ctl00_CPMain_cAddress1")).sendKeys("heyo");
 		
