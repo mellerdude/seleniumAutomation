@@ -13,7 +13,7 @@ public class signupPage {
 	By firstName = By.name("LoginFirstName");
 	By lastName = By.name("LoginLastName");
 	By passwordLocator = By.id("cLoginPassword");
-	By agreementLocator = By.name("cAcceptTos");
+	By agreementLocator = By.xpath("//*[@id=\"ctl00_CPMain_cDeliveryMethods_ctl01_DeliveryMethod1_cDeliveryMethods\"]/tbody/tr[1]/td/span/label/div/span[1]");
 	By signUpLocator = By.name("signUp");
 
 

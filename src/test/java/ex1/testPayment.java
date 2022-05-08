@@ -218,8 +218,8 @@ public class testPayment {
 		login.postUserMail(email);
 		login.postUserPass(password);
 		login.clickLogin();
-		
-		Thread.sleep(1000);
+		//*[@id="ctl00_CPMain_cDeliveryMethods_ctl01_DeliveryMethod1_cDeliveryMethods"]/tbody/tr[1]/td/span/label/div/span[1]
+		Thread.sleep(2000);
 
 		//find event
 		home.clickDanceEvent();
@@ -233,18 +233,17 @@ public class testPayment {
 		ticket.clickProceedToPay();
 		
 		//pay for event
-		driver.findElement(By.xpath("//*[@id=\"ctl00_CPMain_cDeliveryMethods_ctl01_DeliveryMethod1_cDeliveryMethods\"]/tbody/tr[1]/td/span/label/div/span[1]")).click();
-		driver.findElement(By.id("ctl00_CPMain_cAddress1")).sendKeys("heyo");
+		paymentPage pay = new paymentPage(driver);
+		//pay.acceptAgreement();
+		pay.acceptEticket();
+		pay.postAddress("Your House 1");
+		pay.postCity("Tel Aviv");
+		pay.postZip("12345");
+		pay.postCName("name names");
+		pay.postCNum("411111111111111");
+		pay.postCExp("01/29");
+		pay.postCDigits("123");
 		
-		driver.findElement(By.id("ctl00_CPMain_cCity")).sendKeys("heyo");
-		driver.findElement(By.id("ctl00_CPMain_cZip")).sendKeys("12345");
-		driver.findElement(By.id("ctl00_CPMain_cCardHolderName")).sendKeys("Your Mama");
-
-		driver.findElement(By.xpath("//*[@id=\"root\"]/form/div/div[2]/span[1]")).sendKeys("4111 1111 1111 1111");
-		//Thread.sleep(1500);
-	    //driver.findElement(By.name("cardnumber")).sendKeys("4111 1111 1111 1111");
-	    //driver.findElement(By.name("exp-date")).sendKeys("01 / 29");
-	    //driver.findElement(By.name("cvc")).sendKeys("123");
 	}
 }
 /*

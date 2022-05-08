@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-05-08T11:02:11 IDT" name="Default suite" finished-at="2022-05-08T11:02:27 IDT" duration-ms="15550">
+  <suite started-at="2022-05-08T11:59:24 IDT" name="Default suite" finished-at="2022-05-08T11:59:44 IDT" duration-ms="20337">
     <groups>
     </groups>
-    <test started-at="2022-05-08T11:02:11 IDT" name="Default test" finished-at="2022-05-08T11:02:27 IDT" duration-ms="15550">
+    <test started-at="2022-05-08T11:59:24 IDT" name="Default test" finished-at="2022-05-08T11:59:44 IDT" duration-ms="20337">
       <class name="ex1.testPayment">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:ex1.testPayment@120f102b]" started-at="2022-05-08T11:02:11 IDT" name="setUp" finished-at="2022-05-08T11:02:18 IDT" duration-ms="7139" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:ex1.testPayment@120f102b]" started-at="2022-05-08T11:59:24 IDT" name="setUp" finished-at="2022-05-08T11:59:36 IDT" duration-ms="11504" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testPayment()[pri:0, instance:ex1.testPayment@120f102b]" started-at="2022-05-08T11:02:18 IDT" name="testPayment" finished-at="2022-05-08T11:02:27 IDT" duration-ms="8384" status="FAIL">
+        <test-method signature="testPayment()[pri:0, instance:ex1.testPayment@120f102b]" started-at="2022-05-08T11:59:36 IDT" name="testPayment" finished-at="2022-05-08T11:59:44 IDT" duration-ms="8807" status="FAIL">
           <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
               <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="root"]/form/div/div[2]/span[1]"}
@@ -20,8 +20,8 @@ For documentation on this error, please visit: https://www.seleniumhq.org/except
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
 System info: host: 'DESKTOP-B47HB45', ip: '10.0.0.4', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 101.0.4951.54, chrome: {chromedriverVersion: 101.0.4951.41 (93c720db8323..., userDataDir: C:\Users\omrim\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:56335}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: b6ec79e0b97968126f71e13c549e03f0
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 101.0.4951.54, chrome: {chromedriverVersion: 101.0.4951.41 (93c720db8323..., userDataDir: C:\Users\omrim\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:57505}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: a905773b085de81737a6feb785a90188
 *** Element info: {Using=xpath, value=//*[@id="root"]/form/div/div[2]/span[1]}]]>
             </message>
             <full-stacktrace>
@@ -31,8 +31,8 @@ For documentation on this error, please visit: https://www.seleniumhq.org/except
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
 System info: host: 'DESKTOP-B47HB45', ip: '10.0.0.4', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.1'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 101.0.4951.54, chrome: {chromedriverVersion: 101.0.4951.41 (93c720db8323..., userDataDir: C:\Users\omrim\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:56335}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: b6ec79e0b97968126f71e13c549e03f0
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 101.0.4951.54, chrome: {chromedriverVersion: 101.0.4951.41 (93c720db8323..., userDataDir: C:\Users\omrim\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:57505}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: a905773b085de81737a6feb785a90188
 *** Element info: {Using=xpath, value=//*[@id="root"]/form/div/div[2]/span[1]}
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
@@ -49,7 +49,8 @@ at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:3
 at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
 at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
 at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-at ex1.testPayment.testPayment(testPayment.java:240)
+at pages.paymentPage.postCNum(paymentPage.java:47)
+at ex1.testPayment.testPayment(testPayment.java:243)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -84,7 +85,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testPayment -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:ex1.testPayment@120f102b]" started-at="2022-05-08T11:02:27 IDT" name="tearDown" finished-at="2022-05-08T11:02:27 IDT" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:ex1.testPayment@120f102b]" started-at="2022-05-08T11:59:44 IDT" name="tearDown" finished-at="2022-05-08T11:59:44 IDT" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
