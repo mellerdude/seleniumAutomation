@@ -1,6 +1,7 @@
 package ex1;
 
 import java.io.IOException;
+import org.apache.logging.log4j.*;
 import pages.homePage;
 import pages.loginPage;
 import pages.ticketPage;
@@ -28,6 +29,7 @@ public class testPayment {
 	private WebDriver driver;
 	private Map<String, Object> vars;
 	JavascriptExecutor js;
+	Logger logger=LogManager.getLogger(testPayment.class);
 
 	@BeforeMethod
 	public void setUp() throws IOException {
@@ -39,6 +41,8 @@ public class testPayment {
 		objExcelFile.fileRead(
 				"C:\\Users\\omrim\\OneDrive - Afeka College Of Engineering\\Programming\\Java\\seleniumAutomation\\src\\test\\java\\files\\",
 				"input.xls", "login");
+		Logger logger=LogManager.getLogger(testPayment.class);
+
 		driver.get("https://www.ticketor.com/demo/default");
 		driver.manage().window().setSize(new Dimension(1024, 724));
 	}
@@ -208,16 +212,23 @@ public class testPayment {
 
 		Row row = theSheet.getRow(0);
 		email = (row.getCell(0).getStringCellValue());
+		logger.info("aquired email");
 		password = String.valueOf(row.getCell(1).getNumericCellValue());
 		password = password.substring(0, 5);
+		logger.info("aquired password");
 
 		//login
+		logger.info("opening website");
 		homePage home = new homePage(driver);
 		home.clickSignIn();
+		logger.info("clicked sign in");
 		loginPage login = new loginPage(driver);
 		login.postUserMail(email);
+		logger.info("entered email");
 		login.postUserPass(password);
+		logger.info("entered password");
 		login.clickLogin();
+		logger.info("clicked login");
 		//*[@id="ctl00_CPMain_cDeliveryMethods_ctl01_DeliveryMethod1_cDeliveryMethods"]/tbody/tr[1]/td/span/label/div/span[1]
 		Thread.sleep(2000);
 
@@ -225,13 +236,16 @@ public class testPayment {
 		home.clickDanceEvent();
 		ticketPage ticket = new ticketPage(driver);
 		ticket.skipNextMonth();
+		logger.info("skipping to next month events");
 		ticket.pressEventTime();
+		logger.info("pressing event time selected");
 		Thread.sleep(1000);
 		ticket.clickNumTickets(1);
+		logger.info("selecting number of tickets");
 		ticket.clickAddToCart();
-		Thread.sleep(1000);
+		logger.info("adding ticket to cart");
+		Thread.sleep(2000);
 		ticket.clickProceedToPay();
-		
 		//pay for event
 		paymentPage pay = new paymentPage(driver);
 		//pay.acceptAgreement();
@@ -239,10 +253,37 @@ public class testPayment {
 		pay.postAddress("Your House 1");
 		pay.postCity("Tel Aviv");
 		pay.postZip("12345");
+		Thread.sleep(1000);
 		pay.postCName("name names");
-		pay.postCNum("411111111111111");
-		pay.postCExp("01/29");
-		pay.postCDigits("123");
+		Thread.sleep(1000);
+		driver.manage().window().setSize(new Dimension(1260, 660));
+		driver.switchTo().frame(2);
+		Thread.sleep(1000);
+	    // 20 | click | name=cardnumber | 
+	    driver.findElement(By.name("cardnumber")).click();
+	    Thread.sleep(1000);
+	    // 21 | type | name=cardnumber | 1232 1312 3123 123
+	    driver.findElement(By.name("cardnumber")).sendKeys("1232 1312 3123 123");
+	    Thread.sleep(1000);
+	    // 22 | click | name=exp-date | 
+	    driver.findElement(By.name("exp-date")).click();
+	    Thread.sleep(1000);
+	    // 23 | type | name=exp-date | 11 / 11
+	    driver.findElement(By.name("exp-date")).sendKeys("11 / 11");
+	    Thread.sleep(1000);
+	    // 24 | click | name=cvc | 
+	    driver.findElement(By.name("cvc")).click();
+	    Thread.sleep(1000);
+	    // 25 | type | name=cvc | 112
+	    driver.findElement(By.name("cvc")).sendKeys("112");
+	    Thread.sleep(1000);
+//		driver.switchTo().frame(2);
+//		Thread.sleep(1000);
+//		pay.postCNum("411111111111111");
+//		Thread.sleep(1000);
+//		pay.postCExp("01/29");
+//		Thread.sleep(1000);
+//		pay.postCDigits("123");
 		
 	}
 }

@@ -1,52 +1,31 @@
 package ex1;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Row;
-
 import org.apache.poi.ss.usermodel.Sheet;
-
-import org.apache.poi.ss.usermodel.Workbook;
-
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import files.fileReader;
 import pages.homePage;
 import pages.loginPage;
 import pages.signupPage;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
-import org.openqa.selenium.support.ui.Select;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.core.IsNot.not;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.Keys;
-import java.util.*;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class testSignUp {
 	private WebDriver driver;
 	private Map<String, Object> vars;
 	JavascriptExecutor js;
-
+	Logger logger=LogManager.getLogger(testSignUp.class);
 	@BeforeMethod
 	public void setUp() throws IOException {
 		System.setProperty("webdriver.chrome.driver","C:\\Users\\omrim\\Downloads\\chromedriver.exe");
@@ -54,8 +33,10 @@ public class testSignUp {
 		js = (JavascriptExecutor) driver;
 		vars = new HashMap<String, Object>();
 		fileReader objExcelFile = new fileReader();
+		
 		objExcelFile.fileRead("C:\\Users\\omrim\\OneDrive - Afeka College Of Engineering\\Programming\\Java\\seleniumAutomation\\src\\test\\java\\files\\", "input.xls", "signUp");
-	
+		driver.get("https://www.ticketor.com/demo/default");
+		driver.manage().window().setSize(new Dimension(1024, 724));
 	}
 
 	@AfterMethod
@@ -65,13 +46,13 @@ public class testSignUp {
 
 	@Test
 	public void testSignUp() {
-		driver.get("https://www.ticketor.com/demo/default");
-		driver.manage().window().setSize(new Dimension(1024, 724));
-
+		logger.info("aquired email");
 		homePage home = new homePage(driver);
 		home.clickSignIn();
+		logger.info("clicked sign in");
 		loginPage login = new loginPage(driver);
 		login.switchToSignUp();
+		logger.info("switched to sign up");
 		signupPage signUp = new signupPage(driver);
 		
 		Random rand = new Random();
@@ -86,17 +67,27 @@ public class testSignUp {
 
 		Row row = theSheet.getRow(0);
 		email = (row.getCell(0).getStringCellValue());
+		logger.info("aquired email");
 		fName = (row.getCell(1).getStringCellValue());
+		logger.info("aquired fname");
 		lName = (row.getCell(2).getStringCellValue());
+		logger.info("aquired lname");
 		pwd = String.valueOf(row.getCell(3).getNumericCellValue());
 		pwd = pwd.substring(0, 5);
+		logger.info("aquired password");
 
 		signUp.postUserMail(email + String.valueOf(rand.nextInt(10000)) + "@gmail.com");
+		logger.info("entered user email");
 		signUp.postUserFName(fName);
+		logger.info("entered user first name");
 		signUp.postUserLName(lName);
+		logger.info("entered user last name");
 		signUp.acceptAgreement();
+		logger.info("accepted agreement");
 		signUp.postUserPass(pwd);
+		logger.info("entered user password");
 		signUp.clickSignUp();
+		logger.info("clicked sign up");
 	}
 
 	protected String getSaltString() {

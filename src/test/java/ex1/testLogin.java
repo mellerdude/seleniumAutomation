@@ -38,11 +38,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import pages.homePage;
 import pages.loginPage;
-
+import org.apache.logging.log4j.*;
 public class testLogin {
 	private WebDriver driver;
 	private Map<String, Object> vars;
 	JavascriptExecutor js;
+	Logger logger=LogManager.getLogger(testLogin.class);
 
 	@BeforeMethod
 	public void setUp() throws IOException {
@@ -74,16 +75,22 @@ public class testLogin {
 
 		Row row = theSheet.getRow(0);
 		email = (row.getCell(0).getStringCellValue());
+		logger.info("aquired email");
 		password = String.valueOf(row.getCell(1).getNumericCellValue());
 		password = password.substring(0, 5);
+		logger.info("aquired password");
 		Thread.sleep(1000);
-
+		logger.info("opening website");
 		homePage home = new homePage(driver);
 		home.clickSignIn();
+		logger.info("clicked sign in");
 		loginPage login = new loginPage(driver);
 		login.postUserMail(email);
+		logger.info("entered email");
 		login.postUserPass(password);
+		logger.info("entered password");
 		login.clickLogin();
+		logger.info("clicked login");
 
 	}
 }

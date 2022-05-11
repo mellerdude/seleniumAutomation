@@ -15,7 +15,7 @@ public class paymentPage {
 	By cityLocator = By.id("ctl00_CPMain_cCity");
 	By zipLocator = By.id("ctl00_CPMain_cZip");
 	By cNameLocator = By.id("ctl00_CPMain_cCardHolderName");
-	By cNumLocator = By.xpath("//*[@id=\"root\"]/form/div/div[2]/span[1]");
+	By cNumLocator = By.xpath("//*[@id=\"root\"]/form/div/div[2]/span[1]/span[2]/div/div[2]/span");
 	By cExpLocator = By.name("exp-date");
 	By cDigitsLocator = By.name("cvc");
 
